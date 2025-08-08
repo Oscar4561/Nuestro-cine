@@ -1,0 +1,207 @@
+ /* Fondo y letra base */
+body.login-body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0d0d0d;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(255, 0, 100, 0.5);
+}
+
+.login-container h1 {
+  text-align: center;
+}
+
+.resaltado {
+  color: #f39c12;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.password-container {
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  flex: 1;
+}
+
+.password-container button {
+  background: none;
+  border: none;
+  color: #f39c12;
+  font-size: 18px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+button[type="submit"] {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  background-color: #f39c12;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.help-text {
+  font-size: 12px;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.help-text a {
+  color: #ff69b4;
+  text-decoration: none;
+}
+
+/* --- CARTELERA GENERAL --- */
+
+.cartelera-body {
+  background-color: #0d0d0d;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.encabezado {
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 10px 20px;
+  border-bottom: 2px solid #f39c12;
+}
+
+.logo {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 15px;
+  background-color: #1a1a1a;
+  border-bottom: 1px solid #333;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cartelera-contenido {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+.pelicula {
+  background-color: #111;
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(255, 0, 100, 0.3);
+}
+
+.pelicula img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s;
+}
+
+.pelicula:hover img {
+  transform: scale(1.05);
+}
+
+.pelicula h3 {
+  margin: 10px 0 5px;
+}
+
+.etiqueta {
+  display: inline-block;
+  background-color: #e91e63;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: white;
+  margin-bottom: 5px;
+}
+
+.preventa {
+  background-color: #ff5722;
+}
+.volver {
+  margin: 20px;
+  text-align: left;
+}
+
+.volver a {
+  color: #f39c12;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.pelicula-detalle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.pelicula-detalle img {
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+}
+
+.pelicula-detalle .info {
+  max-width: 600px;
+  text-align: center;
+}
+
+.boton-ver {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #e91e63;
+  color: white;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(255, 0, 100, 0.4);
+}
