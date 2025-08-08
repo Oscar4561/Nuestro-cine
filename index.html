@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Nuestro Cine</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="login-body">
+
+  <div class="login-container">
+    <h1>Bienvenido a <span class="resaltado">Nuestro Cine</span></h1>
+
+    <form id="loginForm">
+      <label for="username">Usuario</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="password">Contraseña</label>
+      <div class="password-container">
+        <input type="password" id="password" name="password" required>
+        <button type="button" id="togglePassword">👁</button>
+      </div>
+
+      <button type="submit">Iniciar sesión</button>
+
+      <p class="help-text">
+        ¿Olvidaste tu contraseña? 
+        <a href="https://wa.me/593XXXXXXXXX" target="_blank">Pide ayuda aquí</a>
+      </p>
+    </form>
+
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
