@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>En el agua la vida es más - Nuestro Cine</title>
+  <meta name="description" content="Descubre el origen de esta gran historia en nuestro cine. Horarios y sinopsis completa.">
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    /* Estructura principal con nuevo borde bicolor */
+    .pelicula-detalle {
+      display: grid;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      box-shadow: 0 1px 10px #f9f9f9;
+      border-radius: 10px;
+      border: 12px solid transparent;
+      border-image: linear-gradient(to right, #f39c12, #c62828, #f39c12) 1;
+      background: linear-gradient(rgba(245, 245, 220, 0.1), rgba(245, 245, 220, 0.1)), #0d0d0d;
+      position: relative;
+    }
+    
+    /* Efecto de esquina doblada */
+    .pelicula-detalle::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, transparent 50%, #d4a76a 50%, #c62828 100%);
+      box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+    
+    @media (min-width: 768px) {
+      .pelicula-detalle {
+        grid-template-columns: 1fr 2fr;
+        align-items: start;
+        border-radius: 5px;
+      }
+    }
+    
+    /* Contenedor de horarios con nuevo diseño */
+    .horarios-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      margin: 25px 0;
+    }
+    
+    .horario-item {
+      background-color: #c62828; /* Rojo similar al botón de login */
+      color: white; /* Letras blancas */
+      border-radius: 8px;
+      padding: 12px 20px;
+      text-align: center;
+      min-width: 120px;
+      box-shadow: 0 2px 5px #f9f9f9;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-weight: bold;
+    }
+    
+    .horario-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px #a02020;
+      background-color: #a02020; /* Rojo más oscuro al pasar mouse */
+    }
+    
+    /* Nuevo diseño para el cuadro de sinopsis (similar al login) */
+    .sinopsis-container {
+      background-color:#c62828;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 10px #f9f9f9;
+      margin-bottom: 25px;
+      border: 1px solid #e0e0e0;
+      font-weight: bold
+    }
+    
+    /* Botón de ver película (manteniendo estilo del login) */
+    .boton-ver {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #c62828;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin-top: 20px;
+      text-align: center;
+      transition: background-color 0.3s;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      max-width: 200px;
+      box-shadow: 0 1px 10px #f9f9f9
+    }
+    
+    .boton-ver:hover {
+      background-color: #f9f9f9;
+      color:#a02020;
+      box-shadow: 0 1px 10px #a02020
+    }
+    
+    /* Detalles técnicos con nuevo estilo */
+    .detalles-tecnicos {
+      margin: 20px 0;
+      padding: 20px;
+      background-color: #0d0d0d;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px #f39c12;
+      border: 5px solid #f39c12;
+      font-weight: bold
+    }
+     
+    .detalles-tecnicos p {
+      margin: 10px 0;
+      font-weight: bold;
+      color:#f9f9f9;
+    }
+    
+    .detalles-tecnicos strong {
+      font-weight: bold;
+      color:#c62828;
+      text-shadow: 0 6px 10px #c62828;
+    }
+    /* Botón volver mejorado */
+    .volver a {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #c62828;;
+      color: white;
+      text-decoration: none;
+      border-radius: 20px;
+      transition: all 0.3s;
+      font-weight: bold;
+    }
+    
+    .volver a:hover {
+      background-color: #f39c12;
+      transform: translateX(-5px);
+    }
+  </style>
+</head>
+<body class="pelicula1 cartelera-body">
+
+  <!-- Encabezado -->
+  <header class="encabezado" role="banner">
+    <img src="img/logo.png" alt="Logo de Nuestro Cine" class="logo">
+    <h1>En el agua la vida es más</h1>
+  </header>
+
+  <!-- Navegación -->
+  <nav class="volver" aria-label="Navegación secundaria">
+    <a href="cartelera.html" aria-label="Volver a la cartelera de películas">⬅ Volver a la cartelera</a>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="pelicula-detalle" itemscope itemtype="http://schema.org/Movie">
+    <div>
+      <img src="img/pelicula3.jpg" alt="Póster de la película 'En el agua la vida es más'" itemprop="image" class="poster-pelicula">
+      
+      <div class="detalles-tecnicos">
+        <p><strong>Duración:</strong> 120 minutos</p>
+        <p><strong>Género:</strong> Drama/Romance</p>
+        <p><strong>Clasificación:</strong> Todo público</p>
+        <p><strong>Director:</strong> Nombre del Director</p>
+        <p><strong>Actores principales:</strong> Actor 1, Actor 2</p>
+        <p itemprop="datePublished"><strong>Estreno:</strong> 7 Agosto 2025</p>
+      </div>
+    </div>
+
+    <div class="info">
+      <section aria-labelledby="sinopsis-heading">
+        <h2 id="sinopsis-heading">Sinópsis</h2>
+        <div class="sinopsis-container">
+          <p itemprop="description">
+                 Es increíble como una piscina puede ser el escape perfecto de un día lleno de problemas, y poder compartir este hobby contigo siempre será un placer. El agua limpia el alma......al menos eso nos gustaría creer.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="horarios-heading">
+        <h3 id="horarios-heading">Horarios disponibles</h3>
+        <div class="horarios-container">
+          <div class="horario-item">14:00<br><small>Sala 1</small></div>
+          <div class="horario-item">17:30<br><small>Sala 3</small></div>
+          <div class="horario-item">21:00<br><small>Sala 2</small></div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+          <a class="boton-ver" href="ver-pelicula3.html" itemprop="url">
+            Ver Película 🎥
+          </a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+</body>
+</html>
