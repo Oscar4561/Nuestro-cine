@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reproducción - Nuestro Cine</title>
+  <link rel="stylesheet" href="css/estilos.css">
+
+  <style>
+    /* Estilos mínimos adicionales, sin reemplazar tu CSS principal */
+    .video-contenedor {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    
+    video {
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      width: 100%;
+      display: block;
+    }
+    
+    .volver a {
+      display: inline-block;
+      margin: 15px 0;
+      padding: 8px 15px;
+      background-color: #c62828;
+      color: white;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    
+    .volver a:hover {
+      background-color: #a01818;
+    }
+    
+    .descripcion {
+      margin-top: 15px;
+      font-size: 1.1em;
+      color: #444;
+    }
+    
+    /* Botón de play centrado exactamente en el video */
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      background-color: rgba(248, 2, 2, 0.8);
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .play-button:hover {
+      background-color: rgba(248, 2, 2, 0.9);
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    
+    .play-button::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      border-left: 30px solid #ffffff;
+      margin-left: 5px;
+    }
+    
+    .play-button.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="cartelera-body">
+
+  <!-- Encabezado -->
+  <header class="encabezado">
+    <img src="img/logo.png" alt="Logo de Nuestro Cine" class="logo">
+    <h2>Reproducción de la Película</h2>
+  </header>
+
+  <!-- Botón de regreso -->
+  <div class="volver">
+    <a href="cartelera.html" aria-label="Volver a la cartelera">⬅ Volver a la cartelera</a>
+  </div>
+
+  <!-- Sección del video -->
+  <section class="video-contenedor">
+    <div class="video-wrapper">
+      <video id="video" width="100%" controls poster="img/pelicula1.jpg">
+        <source src="video1/pelicula1.hevc.mp4" type="video/mp4">
+        <source src="video1/pelicula1.webm" type="video/webm">
+        <source src="video1/pelicula1.ogg" type="video/ogg">
+        Tu navegador no soporta video HTML5.
+        <track src="subtitulos/pelicula1.vtt" kind="subtitles" srclang="es" label="Español">
+      </video>
+      
+      <!-- Botón de play centrado exactamente en el video -->
+      <button class="play-button" id="playButton"></button>
+    </div>
+
+    <div class="descripcion">
+      <p>
+        Gracias por disfrutar esta función especial. La historia presentada nos recuerda
+        que el verdadero valor se encuentra en la amistad. No hay que encontrarle motivos,
+        solo vivirla al máximo.
+      </p>
+    </div>
+  </section>
+
+  <!-- Script para funcionalidad -->
+  <script>
+    const video = document.getElementById('video');
+    const playButton = document.getElementById('playButton');
+    const VIDEO_KEY = 'ultimoTiempoPelicula1';
+
+    // Guardar tiempo de reproducción
+    video.addEventListener('timeupdate', () => {
+      localStorage.setItem(VIDEO_KEY, video.currentTime);
+    });
+
+    // Restaurar posición
+    window.addEventListener('load', () => {
+      const ultimoTiempo = localStorage.getItem(VIDEO_KEY);
+      if (ultimoTiempo) {
+        video.currentTime = parseFloat(ultimoTiempo);
+      }
+    });
+
+    // Control del botón play
+    playButton.addEventListener('click', () => {
+      video.play();
+    });
+
+    // Ocultar/mostrar botón según estado del video
+    video.addEventListener('play', () => {
+      playButton.classList.add('hidden');
+    });
+
+    video.addEventListener('pause', () => {
+      playButton.classList.remove('hidden');
+    });
+  </script>
+
+</body>
+</html>
