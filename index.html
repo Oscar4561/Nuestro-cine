@@ -5,6 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login - Nuestro Cine</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    /* Solo agregamos estos estilos mínimos para las mejoras */
+    .password-container {
+      position: relative;
+    }
+    #togglePassword {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .error-message {
+      color: #c62828;
+      font-size: 0.9rem;
+      margin: 5px 0;
+      text-align: center;
+      display: none;
+    }
+    /* Aseguramos mismos tamaños para los inputs */
+    #username, #password {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
 </head>
 <body class="login-body">
 
@@ -20,6 +47,7 @@
         <input type="password" id="password" name="password" required>
         <button type="button" id="togglePassword">👁</button>
       </div>
+      <div id="error-message" class="error-message"></div>
 
       <button type="submit">Iniciar sesión</button>
 
@@ -28,10 +56,8 @@
         <a href="https://wa.me/593982656937" target="_blank">Pide ayuda aquí</a>
       </p>
     </form>
-
   </div>
 
   <script src="js/script.js"></script>
 </body>
 </html>
-
