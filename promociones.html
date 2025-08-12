@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promociones - Nuestro Cine</title>
+  <meta name="description" content="Cupones promocionales personalizables">
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    /* Fondo general oscuro */
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Contenedor principal con fondo gris */
+    .contenedor-promociones {
+      background-color: #e0e0e0;
+      width: 90%;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 40px;
+      border-radius: 3px;
+      box-shadow: 
+        0 0 10px rgba(198, 40, 40, 0.6),
+        0 0 30px rgba(0, 0, 0, 0.3);
+      position: relative;
+      border: 12px solid #f39c12;
+      border-image: linear-gradient(to right, #f39c12, #c62828, #f39c12) 1;
+    }
+
+    /* Efecto de esquina doblada */
+    .contenedor-promociones::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, transparent 50%, #d4a76a 50%, #c62828 100%);
+      box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Estilo del título */
+    .titulo-principal {
+      text-align: center;
+      color: #c62828;
+      font-size: 2.3em;
+      margin: 0 0 30px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed #c62828;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Contenedor de cupones */
+    .cupones-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    /* Estilo de cada cupón - Fondo blanco */
+    .cupon {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      border-left: 5px solid #c62828;
+      position: relative;
+      transition: all 0.3s;
+    }
+
+    .cupon:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .cupon-titulo {
+      color: #c62828;
+      font-size: 1.5em;
+      margin-top: 0;
+      text-align: center;
+      border-bottom: 1px dashed #c62828;
+      padding-bottom: 10px;
+    }
+
+    .cupon-campo {
+      margin-bottom: 15px;
+    }
+
+    .cupon-campo label {
+      display: block;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+      padding: 0 8px; /* Alineado con los inputs */
+    }
+
+    /* Campos con espaciado uniforme */
+    .cupon-campo input,
+    .cupon-campo textarea {
+      width: calc(100% - 16px);
+      padding: 8px;
+      margin: 0 8px;
+      border: 1px solid #c62828;
+      border-radius: 4px;
+      font-family: inherit;
+      background-color: white;
+      color: black;
+      box-sizing: border-box;
+    }
+
+    .cupon-campo textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    /* Botones alineados con los campos */
+    .cupon-botones {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding: 0 8px; /* Mismo espaciado que los campos */
+    }
+
+    .cupon-boton {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+
+    .cupon-boton.guardar {
+      background-color: #c62828;
+      color: white;
+    }
+
+    .cupon-boton.guardar:hover {
+      background-color: #a02020;
+    }
+
+    .cupon-boton.limpiar {
+      background-color: #f39c12;
+      color: white;
+    }
+
+    .cupon-boton.limpiar:hover {
+      background-color: #e67e22;
+    }
+
+    /* Botón volver mejorado */
+    .volver a {
+      display: inline-block;
+      padding: 10px 25px;
+      background-color: #c62828;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s;
+      font-weight: bold;
+      margin: 30px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      border: 2px solid #c62828;
+      font-size: 1em;
+    }
+
+    .volver a:hover {
+      background-color: #f39c12;
+      border: 2px solid #f39c12;
+      transform: translateX(-5px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Encabezado */
+    .encabezado {
+      text-align: center;
+      padding: 25px 20px 15px;
+      background: linear-gradient(to bottom, #0a0a0a, #222);
+      position: relative;
+      z-index: 10;
+    }
+
+    .encabezado .logo {
+      max-height: 70px;
+      filter: drop-shadow(0 0 5px rgba(243, 156, 18, 0.7));
+    }
+
+    .encabezado h1 {
+      color: #f39c12;
+      margin: 10px 0 0;
+      font-size: 1.8em;
+      text-shadow: 0 0 8px rgba(243, 156, 18, 0.5);
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .contenedor-promociones {
+        width: 95%;
+        padding: 30px 20px;
+      }
+      
+      .titulo-principal {
+        font-size: 1.8em;
+      }
+      
+      .volver a {
+        margin: 20px 10px;
+        padding: 8px 20px;
+      }
+      
+      .cupones-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contenedor-promociones {
+        width: 98%;
+        padding: 25px 15px;
+      }
+      
+      .cupon {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="encabezado" role="banner">
+    <img src="img/logo.png" alt="Logo" class="logo">
+    <h1>Promociones Especiales</h1>
+  </header>
+
+  <!-- Navegación -->
+  <nav class="volver" aria-label="Navegación secundaria">
+    <a href="cartelera.html" aria-label="Volver a la cartelera de películas">⬅ Volver a la cartelera</a>
+  </nav>
+
+  <!-- Contenedor principal -->
+  <main class="contenedor-promociones">
+    <h2 class="titulo-principal">Cupones Personalizables</h2>
+    
+    <div class="cupones-container" id="cupones-container">
+      <!-- Los cupones se generarán con JavaScript -->
+    </div>
+  </main>
+
+  <script>
+    // Función para crear un cupón
+    function crearCupon(id) {
+      const cupon = document.createElement('div');
+      cupon.className = 'cupon';
+      cupon.id = `cupon-${id}`;
+      
+      cupon.innerHTML = `
+        <h3 class="cupon-titulo">Cupón ${id}</h3>
+        <div class="cupon-campo">
+          <label for="de-${id}">De:</label>
+          <input type="text" id="de-${id}" class="cupon-input" data-campo="de">
+        </div>
+        <div class="cupon-campo">
+          <label for="para-${id}">Para:</label>
+          <input type="text" id="para-${id}" class="cupon-input" data-campo="para">
+        </div>
+        <div class="cupon-campo">
+          <label for="vale-${id}">Vale por:</label>
+          <textarea id="vale-${id}" class="cupon-input" data-campo="vale"></textarea>
+        </div>
+        <div class="cupon-botones">
+          <button class="cupon-boton guardar" data-id="${id}">Guardar</button>
+          <button class="cupon-boton limpiar" data-id="${id}">Limpiar</button>
+        </div>
+      `;
+      
+      return cupon;
+    }
+
+    // Función para cargar datos guardados
+    function cargarDatos() {
+      const datosGuardados = JSON.parse(localStorage.getItem('cuponesPromociones')) || {};
+      
+      Object.keys(datosGuardados).forEach(id => {
+        const cuponData = datosGuardados[id];
+        document.getElementById(`de-${id}`).value = cuponData.de || '';
+        document.getElementById(`para-${id}`).value = cuponData.para || '';
+        document.getElementById(`vale-${id}`).value = cuponData.vale || '';
+      });
+    }
+
+    // Función para guardar datos
+    function guardarDatos(id) {
+      const datos = {
+        de: document.getElementById(`de-${id}`).value,
+        para: document.getElementById(`para-${id}`).value,
+        vale: document.getElementById(`vale-${id}`).value
+      };
+      
+      const todosDatos = JSON.parse(localStorage.getItem('cuponesPromociones')) || {};
+      todosDatos[id] = datos;
+      localStorage.setItem('cuponesPromociones', JSON.stringify(todosDatos));
+      
+      alert('Cupón guardado correctamente!');
+    }
+
+    // Función para limpiar cupón
+    function limpiarCupon(id) {
+      if (confirm('¿Estás seguro de que quieres limpiar este cupón?')) {
+        document.getElementById(`de-${id}`).value = '';
+        document.getElementById(`para-${id}`).value = '';
+        document.getElementById(`vale-${id}`).value = '';
+        
+        const todosDatos = JSON.parse(localStorage.getItem('cuponesPromociones')) || {};
+        delete todosDatos[id];
+        localStorage.setItem('cuponesPromociones', JSON.stringify(todosDatos));
+      }
+    }
+
+    // Inicializar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      const cuponesContainer = document.getElementById('cupones-container');
+      
+      // Crear 6 cupones
+      for (let i = 1; i <= 6; i++) {
+        cuponesContainer.appendChild(crearCupon(i));
+      }
+      
+      // Cargar datos guardados
+      cargarDatos();
+      
+      // Event listeners para los botones
+      document.querySelectorAll('.cupon-boton.guardar').forEach(boton => {
+        boton.addEventListener('click', function() {
+          const id = this.getAttribute('data-id');
+          guardarDatos(id);
+        });
+      });
+      
+      document.querySelectorAll('.cupon-boton.limpiar').forEach(boton => {
+        boton.addEventListener('click', function() {
+          const id = this.getAttribute('data-id');
+          limpiarCupon(id);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

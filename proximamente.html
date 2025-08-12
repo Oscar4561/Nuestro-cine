@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Próximamente... cosas por hacer juntos</title>
+  <meta name="description" content="Nuestra lista de cosas por hacer juntos">
+  <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    /* Fondo general oscuro */
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    /* Contenedor principal con efecto cuaderno realista */
+    .contenedor-lista {
+      background: 
+        /* Textura de papel envejecido */
+        linear-gradient(rgba(245, 245, 220, 0.2), rgba(245, 245, 220, 0.2)),
+        /* Líneas de cuaderno simuladas */
+        linear-gradient(to bottom, transparent 95%, rgba(0, 0, 0, 0.05) 95%),
+        linear-gradient(to bottom, transparent 95%, rgba(0, 0, 0, 0.05) 95%),
+        linear-gradient(to bottom, transparent 95%, rgba(0, 0, 0, 0.05) 95%),
+        linear-gradient(to bottom, transparent 95%, rgba(0, 0, 0, 0.05) 95%),
+        linear-gradient(to bottom, transparent 95%, rgba(0, 0, 0, 0.05) 95%),
+        /* Color base del papel */
+        #f5f5dc;
+      
+      background-size: 
+        100% 100%,
+        100% 30px,
+        100% 30px,
+        100% 30px,
+        100% 30px,
+        100% 30px;
+      background-repeat: repeat-y;
+      
+      width: 85%;
+      max-width: 800px;
+      min-height: 70vh;
+      margin: 40px auto;
+      padding: 50px;
+      border-radius: 3px;
+      box-shadow: 
+        0 0 10px rgba(198, 40, 40, 0.6),
+        0 0 30px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(0, 0, 0, 0.1);
+      position: relative;
+      border: 12px solid #f39c12;
+      border-image: linear-gradient(to right, #f39c12, #c62828, #f39c12) 1;
+    }
+
+    /* Efecto de esquina doblada */
+    .contenedor-lista::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, transparent 50%, #d4a76a 50%, #c62828 100%);
+      box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Estilo del título */
+    .titulo-principal {
+      text-align: center;
+      color: #c62828;
+      font-size: 2.3em;
+      margin: 0 0 30px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed #c62828;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      font-family: 'Kalam', cursive, sans-serif;
+    }
+
+    /* Estilo de la lista */
+    .lista-cosas {
+      list-style-type: none;
+      padding: 0 10px;
+      margin: 0;
+    }
+
+    .item-cosa {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      padding: 12px 15px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border-radius: 3px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      border-left: 4px solid #c62828;
+      position: relative;
+    }
+
+    .item-cosa:hover {
+      background-color: rgba(255, 255, 255, 0.9);
+      transform: translateX(5px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Estilo del checkbox */
+    .checkbox-cosa {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #c62828;
+      border-radius: 3px;
+      outline: none;
+      margin-right: 15px;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .checkbox-cosa:checked {
+      background-color: #c62828;
+    }
+
+    .checkbox-cosa:checked::after {
+      content: "✓";
+      position: absolute;
+      color: white;
+      font-size: 15px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .texto-cosa {
+      font-size: 1.1em;
+      color: #333;
+      flex-grow: 1;
+      font-weight: 500;
+      font-family: 'Kalam', cursive, sans-serif;
+    }
+
+    .checkbox-cosa:checked + .texto-cosa {
+      text-decoration: line-through;
+      color: #777;
+      font-style: italic;
+    }
+
+    /* Botón volver mejorado */
+    .volver a {
+      display: inline-block;
+      padding: 10px 25px;
+      background-color: #c62828;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      transition: all 0.3s;
+      font-weight: bold;
+      margin: 30px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      border: 2px solid #c62828;
+      font-size: 1em;
+    }
+
+    .volver a:hover {
+      background-color: #f39c12;
+      border: 2px solid #f39c12;
+      transform: translateX(-5px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Encabezado */
+    .encabezado {
+      text-align: center;
+      padding: 25px 20px 15px;
+      background: linear-gradient(to bottom, #0a0a0a, #222);
+      position: relative;
+      z-index: 10;
+    }
+
+    .encabezado .logo {
+      max-height: 70px;
+      filter: drop-shadow(0 0 5px rgba(243, 156, 18, 0.7));
+    }
+
+    .encabezado h1 {
+      color: #f39c12;
+      margin: 10px 0 0;
+      font-size: 1.8em;
+      text-shadow: 0 0 8px rgba(243, 156, 18, 0.5);
+    }
+
+    /* Botón limpiar */
+    .boton-limpiar {
+      display: block;
+      margin: 35px auto 10px;
+      padding: 12px 30px;
+      background: linear-gradient(to right, #c62828, #a02020);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+      font-size: 0.95em;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .boton-limpiar:hover {
+      background: linear-gradient(to right, #f39c12, #e67e22);
+      transform: scale(1.05);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Efecto de tinta en los bordes */
+    .contenedor-lista::after {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px solid rgba(198, 40, 40, 0.2);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .contenedor-lista {
+        width: 90%;
+        padding: 30px 20px;
+      }
+      
+      .titulo-principal {
+        font-size: 1.8em;
+      }
+      
+      .volver a {
+        margin: 20px 10px;
+        padding: 8px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .contenedor-lista {
+        width: 95%;
+        padding: 25px 15px;
+      }
+      
+      .item-cosa {
+        padding: 10px 12px;
+      }
+      
+      .texto-cosa {
+        font-size: 1em;
+      }
+    }
+  </style>
+  <!-- Fuente Kalam para texto manuscrito -->
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header class="encabezado" role="banner">
+    <img src="img/logo.png" alt="Logo" class="logo">
+    <h1>Próximamente... cosas por hacer juntos</h1>
+  </header>
+
+  <!-- Navegación -->
+  <nav class="volver" aria-label="Navegación secundaria">
+    <a href="cartelera.html" aria-label="Volver a la cartelera de películas">⬅ Volver a la cartelera</a>
+  </nav>
+
+  <!-- Contenedor con efecto de cuaderno -->
+  <main class="contenedor-lista">
+    <h2 class="titulo-principal">Nuestra lista de aventuras</h2>
+    
+    <ul class="lista-cosas" id="listaCosas">
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa1">
+        <label for="cosa1" class="texto-cosa">Ver el amanecer en la playa con café caliente</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa2">
+        <label for="cosa2" class="texto-cosa">Hacer un viaje espontáneo sin destino fijo</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa3">
+        <label for="cosa3" class="texto-cosa">Tomar clases de baile juntos (salsa o bachata)</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa4">
+        <label for="cosa4" class="texto-cosa">Componer una canción que represente nuestra historia</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa5">
+        <label for="cosa5" class="texto-cosa">Picnic nocturno con luces y buena música</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa6">
+        <label for="cosa6" class="texto-cosa">Maratón de nuestras películas favoritas</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa7">
+        <label for="cosa7" class="texto-cosa">Crear un álbum físico de nuestros mejores momentos</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa8">
+        <label for="cosa8" class="texto-cosa">Tomar un taller de cocina para aprender algo nuevo</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa9">
+        <label for="cosa9" class="texto-cosa">Acampar y contar historias bajo las estrellas</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa10">
+        <label for="cosa10" class="texto-cosa">Descubrir un pueblo mágico que ninguno conozca</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa11">
+        <label for="cosa11" class="texto-cosa">Maratón de una serie completa en un fin de semana</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa12">
+        <label for="cosa12" class="texto-cosa">Escribir cartas para abrir en nuestro aniversario</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa13">
+        <label for="cosa13" class="texto-cosa">Participar como voluntarios en una causa benéfica</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa14">
+        <label for="cosa14" class="texto-cosa">Crear nuestro ritual de domingos perfectos</label>
+      </li>
+      <li class="item-cosa">
+        <input type="checkbox" class="checkbox-cosa" id="cosa15">
+        <label for="cosa15" class="texto-cosa">Planear una sorpresa secreta para el otro</label>
+      </li>
+    </ul>
+    
+    <button class="boton-limpiar" id="limpiarLista">Limpiar toda la lista</button>
+  </main>
+
+  <script>
+    // Guardar el estado de los checkboxes en localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      // Cargar estados guardados
+      const checkboxes = document.querySelectorAll('.checkbox-cosa');
+      
+      checkboxes.forEach(checkbox => {
+        const savedState = localStorage.getItem(checkbox.id);
+        if (savedState === 'true') {
+          checkbox.checked = true;
+        }
+        
+        // Escuchar cambios
+        checkbox.addEventListener('change', function() {
+          localStorage.setItem(this.id, this.checked);
+        });
+      });
+      
+      // Botón para limpiar todos los checkboxes
+      document.getElementById('limpiarLista').addEventListener('click', function() {
+        const confirmar = confirm("¿Estás seguro de que quieres limpiar toda la lista?");
+        if (confirmar) {
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+            localStorage.setItem(checkbox.id, false);
+          });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
