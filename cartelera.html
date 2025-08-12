@@ -5,23 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cartelera - Nuestro Cine</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <style>
+    /* Estilos solo para el menú mejorado (manteniendo estética original) */
+    .menu {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .menu a:hover {
+      background-color: #e0e0e0;
+    }
+    
+    .menu a.active {
+      background-color: #c62828;
+      color: white;
+    }
+    
+    .menu a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background-color: #c62828;
+      border-radius: 50%;
+    }
+    
+    .menu a:focus {
+      outline: 2px solid #c62828;
+      outline-offset: 2px;
+    }
+    
+    /* Estilos existentes para centrado de películas */
+    .cartelera-contenido {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      justify-content: center;
+      justify-items: center;
+      gap: 25px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body class="cartelera-body">
 
-  <!-- Encabezado -->
+  <!-- Encabezado (idéntico al original) -->
   <header class="encabezado">
     <img src="img/logo.png" alt="Logo" class="logo">
     <h2>Ñaña, disfruta lo mejor de nuestro cine</h2>
   </header>
 
-  <!-- Menú de navegación -->
-  <nav class="menu">
-    <a href="#">Cartelera</a>
-    <a href="#">Ahora</a>
-    <a href="#">Próximamente</a>
+  <!-- Nuevo menú de navegación (con misma apariencia pero mejorado) -->
+  <nav class="menu" aria-label="Navegación principal">
+    <a href="cartelera.html" class="active" aria-current="page">Cartelera</a>
+    <a href="estrenos.html">Estrenos</a>
+    <a href="proximamente.html">Próximamente</a>
+    <a href="horarios.html">Horarios</a>
+    <a href="promociones.html">Promociones</a>
   </nav>
 
-  <!-- Contenedor principal de películas -->
+  <!-- Contenedor de películas (idéntico al original) -->
   <section class="cartelera-contenido">
     <!-- Película 1 -->
     <div class="pelicula">
@@ -73,6 +132,24 @@
       <p>+7 años</p>
     </div>
   </section>
+
+  <!-- Script para menú activo (no afecta visualmente) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentPage = window.location.pathname.split('/').pop() || 'cartelera.html';
+      const menuLinks = document.querySelectorAll('.menu a');
+      
+      menuLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
+        } else {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
