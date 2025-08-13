@@ -185,7 +185,7 @@ button[type="submit"] {
 .pelicula-detalle img {
   max-width: 300px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(229, 215, 215, 0.946);
   margin-bottom: 20px;
 }
 
@@ -204,4 +204,19 @@ button[type="submit"] {
   text-decoration: none;
   font-weight: bold;
   box-shadow: 0 0 10px rgba(255, 0, 100, 0.4);
+}
+@media (max-width: 768px) {
+  .video-contenedor {
+    padding-bottom: 56.25%; /* Cambia a 16:9 */
+  }
+}
+/* Eliminar icono nativo del navegador */
+input[type="password"]::-webkit-contacts-auto-fill-button,
+input[type="password"]::-webkit-credentials-auto-fill-button {
+  display: none !important;
+}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+  display: none;
 }
